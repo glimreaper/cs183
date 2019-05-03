@@ -1,0 +1,40 @@
+#!/bin/bash
+
+echo '1. finding files in /bin, /sbin, /usr/bin, /usr/sbin that are setuid and owned by root'
+read -p "Hit any key to continue. "
+echo `\n find /bin /sbin /usr/bin /usr/sbin -user root -perm -4000`
+read -p "Hit any key to continue."
+
+echo '2. finding all files across the entire system that have setuid or setgid enabled(regardless of owner)'
+read -p "Hit any key to continue."
+echo `\n find / -perm -4000 -o -perm -2000`
+read -p "Hit any key to continue."
+
+echo '3. finding all files in /var that have changed in the last 20 minutes'
+read -p "Hit any key to continue."
+echo `\n find /var -cmin -20`
+read -p "Hit any key to continue."
+
+echo '4. finding all files in /var that are regular files of zero length.'
+read -p "Hit any key to continue."
+echo `\n find /var -type f -size 0`
+read -p "Hit any key to continue." 
+
+echo '5. finding all files in /dev that are not regular files and also not directories.'
+read -p "Hit any key to continue."
+echo `\n find /dev -not -type f -maxdepth 1`
+read -p "Hit any key to continue."
+
+echo '6. find all directories in /home that are not owned gy root. In the same command change their permissions to ensure they have 711 permissions.'
+read -p "Hit any key to continue."
+find /home \! -user root -type d -print -exec chmod 711 {} \;
+read -p "Hit any key to continue."
+
+echo '7. find all regular files in /home that are not owned by root. in same command change their permissions to ensure they have 755 permissions.'
+read -p "Hit any key to continue."
+find /home \! -user root -type f -print -exec chmod 755 {} \;
+read -p "Hit any key to continue."
+
+echo '8. find all files in /etc that have changed in the last 5 days.'
+read -p "Hit any key to continue."
+echo `\n find /etc -ctime -5`

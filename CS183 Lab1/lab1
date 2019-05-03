@@ -1,0 +1,6 @@
+#!/bin/bash
+sudo systemctl disable kdump #this is a kernel crash dump analyzer and is useful for kernel hacking and device driver development/teting which is something we don't need
+sudo systemctl disable lvm2-monitor #this starts and stops dmeventd monitoring for lvm2. We are not using LVM2 based storage so we are disabling it
+sudo systemctl disable microcode #this is for 32 bit Intel IA32 processor and we use a 64 bit so we don't need it.
+
+
